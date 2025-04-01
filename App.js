@@ -1,4 +1,6 @@
 import React from 'react'
+import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Home from './src/Screens/Home';
 import WishList from './src/Screens/Profile/WishList';
 import Cart from './src/Screens/Profile/Cart';
@@ -15,12 +17,60 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 const HomeTabs = createBottomTabNavigator({
+  screenOptions:{
+    //tabBarPosition: isLargeScreen ? 'left' : 'bottom',
+  },
   screens: {
-    Home: Home,
-    WishList: WishList,
-    My: My,
-    Cart: Cart,
-    MyOrder: MyOrder
+    Home: { 
+      screen:Home,      
+      options:{
+        title:'',
+        tabBarOptions:{
+          showIcon: false
+        },
+        tabBarIcon:() => <AntDesign name="home" size={30} color="blue" /> 
+      }
+    },
+    WishList: { 
+      screen:WishList,      
+      options:{
+        title:'',
+        tabBarOptions:{
+          showIcon: true
+        },
+        tabBarIcon:() => <AntDesign name="hearto" size={30} color="black" /> 
+      }
+    },
+    My: { 
+      screen:My,      
+      options:{
+        title:'',
+        tabBarOptions:{
+          showIcon: true
+        },
+        tabBarIcon:() => <AntDesign name="user" size={30} color="black" />
+      }
+    },
+    Cart: { 
+      screen:Cart,      
+      options:{
+        title:'',
+        tabBarOptions:{
+          showIcon: true
+        },
+        tabBarIcon:() => <MaterialCommunityIcons name="cart-outline" size={30} color="black" />
+      }
+    },
+    MyOrder: { 
+      screen:MyOrder,      
+      options:{
+        title:'',
+        tabBarOptions:{
+          showIcon: true
+        },
+        tabBarIcon:() => <AntDesign name="profile" size={24} color="black" />
+      }
+    },
   },
 });
 
