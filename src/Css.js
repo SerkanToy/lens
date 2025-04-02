@@ -4,6 +4,6 @@ export const stylesCss = StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
-        backgroundColor:'red'
+        backgroundColor:'white'
     }
 })

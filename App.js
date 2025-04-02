@@ -18,17 +18,18 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const HomeTabs = createBottomTabNavigator({
   screenOptions:{
-    //tabBarPosition: isLargeScreen ? 'left' : 'bottom',
+    headerShown:false,
+    tabBarShowLabel:false,
   },
   screens: {
     Home: { 
       screen:Home,      
       options:{
-        title:'',
+        title:'Anasayfa',
         tabBarOptions:{
           showIcon: false
         },
-        tabBarIcon:() => <AntDesign name="home" size={30} color="blue" /> 
+        tabBarIcon:() => <AntDesign name="home" size={24} color="blue" /> 
       }
     },
     WishList: { 
@@ -38,17 +39,18 @@ const HomeTabs = createBottomTabNavigator({
         tabBarOptions:{
           showIcon: true
         },
-        tabBarIcon:() => <AntDesign name="hearto" size={30} color="black" /> 
+        tabBarIcon:() => <AntDesign name="hearto" size={24} color="black" /> 
       }
     },
     My: { 
       screen:My,      
       options:{
         title:'',
+        headerShown:true,
         tabBarOptions:{
           showIcon: true
         },
-        tabBarIcon:() => <AntDesign name="user" size={30} color="black" />
+        tabBarIcon:() => <AntDesign name="user" size={24} color="black" />
       }
     },
     Cart: { 
@@ -58,7 +60,7 @@ const HomeTabs = createBottomTabNavigator({
         tabBarOptions:{
           showIcon: true
         },
-        tabBarIcon:() => <MaterialCommunityIcons name="cart-outline" size={30} color="black" />
+        tabBarIcon:() => <MaterialCommunityIcons name="cart-outline" size={24} color="black" />
       }
     },
     MyOrder: { 
@@ -75,16 +77,38 @@ const HomeTabs = createBottomTabNavigator({
 });
 
 const MyDrawer = createDrawerNavigator({
+  screenOptions:{
+    headerTransparent:false, 
+    drawerPosition: 'right',
+    headerSearchBarOptions:{      
+      placeholder:'Ara...'
+    },    
+    headerTitleStyle:{
+      display:'none'
+    },
+    headerStyle:{
+      backgroundColor:'white'
+    },
+    headerShadowVisible:false
+  },
   screens: {
-    HomeTab:HomeTabs,
+    HomeTab: HomeTabs,
     SignIn: SignIn,
     SignUp: SignUp
   },
 });
 
-const RootStack = createNativeStackNavigator({
+const RootStack = createNativeStackNavigator({  
+  screenOptions:{
+    headerShown:false
+  },
   screens: {
-    Index: MyDrawer
+    Index: {
+      screen:MyDrawer,
+      options:{
+        
+      }
+    } 
   },
 });
 
