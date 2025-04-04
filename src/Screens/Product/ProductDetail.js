@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Productdetail() {
+export default function ProductDetail() {
   return (
     <View>
       <Text>Productdetail</Text>

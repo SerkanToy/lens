@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useActionState } from 'react'
+import React from 'react'
 import { stylesCss } from '../../Css'
-import { useNavigation } from '@react-navigation/native';
-export default function My() {
-  var nav = useNavigation()
+import { useNavigation } from '@react-navigation/native'
+import { HeaderShownContext } from '@react-navigation/elements'
+
+export default function My({}) {
+  const nav = useNavigation()
   nav.setOptions({
-    
+    HeaderShownContext:false
   })
   return (
     <View style={[stylesCss.container]}>
