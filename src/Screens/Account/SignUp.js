@@ -4,7 +4,7 @@ import React from 'react'
 export default function SignUp() {
   return (
     <View>
-      <Text>U</Text>
+      <Text>Kayıt Ol</Text>
     </View>
   )
 }

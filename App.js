@@ -11,6 +11,7 @@ import ProductDetail from './src/Screens/Product/ProductDetail';
 import MyOrder from './src/Screens/Profile/MyOrder';
 import SignIn from './src/Screens/Account/SignIn';
 import SignUp from './src/Screens/Account/SignUp';
+import Welcome from './src/Screens/Welcome';
 // Only import react-native-gesture-handler on native platforms
 import 'react-native-gesture-handler';
 import { createStaticNavigation, NavigationIndependentTree, useNavigation } from '@react-navigation/native';
@@ -136,9 +137,7 @@ const MyDrawer = createDrawerNavigator({
   },
   screens: {
     HomeTab: HomeTabs,
-    //ProductTab: ProductTab,
-    SignIn: SignIn,
-    SignUp: SignUp
+    //ProductTab: ProductTab,    
   },
 });
 
@@ -150,6 +149,15 @@ const RootStack = createNativeStackNavigator({
     }
   },
   groups:{
+    Login:{
+      screens:{
+        Welcome:{
+          screen:Welcome
+        },
+        SignIn: SignIn,
+        SignUp: SignUp
+      }
+    },
     Index:{
       screens: {
         Index: {
