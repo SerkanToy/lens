@@ -11,6 +11,7 @@ import ProductDetail from './src/Screens/Product/ProductDetail';
 import MyOrder from './src/Screens/Profile/MyOrder';
 import SignIn from './src/Screens/Account/SignIn';
 import SignUp from './src/Screens/Account/SignUp';
+import ForgotPassword from './src/Screens/Account/ForgotPassword';
 import Welcome from './src/Screens/Welcome';
 // Only import react-native-gesture-handler on native platforms
 import 'react-native-gesture-handler';
@@ -143,19 +144,44 @@ const MyDrawer = createDrawerNavigator({
 
 const RootStack = createNativeStackNavigator({  
   screenOptions:{
-    headerShown:false,
-    headerStyle:{
-      zIndex:-1
-    }
+    headerTransparent:true,
+    headerLeft: ({navigation = useNavigation()}) => (
+      <TouchableOpacity onPress={() => { navigation.goBack() }} style={{backgroundColor:'rgba(0, 0, 0, 0.19)',padding:10,borderRadius:30}}>
+         <AntDesign name="left" size={24} color="black" />
+      </TouchableOpacity>
+    )   
   },
   groups:{
     Login:{
       screens:{
         Welcome:{
-          screen:Welcome
+          screen:Welcome,
+          options:{
+            headerShown:false,
+            title:''
+          }
         },
-        SignIn: SignIn,
-        SignUp: SignUp
+        SignIn:{
+          screen:SignIn,
+          options:{
+            headerShown:true,
+            title:''
+          }
+        }, 
+        SignUp: {
+          screen:SignUp,
+          options:{
+            headerShown:true,
+            title:''
+          }
+        },
+        ForgotPassword: {
+          screen:ForgotPassword,
+          options:{
+            headerShown:true,
+            title:''
+          }
+        },
       }
     },
     Index:{
@@ -163,7 +189,7 @@ const RootStack = createNativeStackNavigator({
         Index: {
           screen:MyDrawer,
           options:{
-            
+            headerShown:false,
           }
         } 
       },

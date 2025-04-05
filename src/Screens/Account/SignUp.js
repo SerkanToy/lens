@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, ImageBackground, Pressable, TextInput } from 'react-native'
 import Checkbox from 'expo-checkbox';
-import React from 'react'
+import React, { useState } from 'react'
 import { stylesCss } from '../../Css'
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
 
 export default function SignUp() {
+
+  var [isSucsess, setIsSucsess] = useState(false)
   const nav = useNavigation()
   return (
     <View style={[stylesCss.container]}>
@@ -18,17 +20,19 @@ export default function SignUp() {
           </View>
 
           <View style={styles.form}>
-            <Text style={{ color: 'black', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>Name*</Text>
-            <TextInput style={styles.textinput} />
+            <Text style={{ color: 'black', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>Full Name*</Text>
+            <TextInput selectionColor={"#FFD081"} style={styles.textinput} />
             <Text style={{ color: 'black', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>Email Address*</Text>
-            <TextInput style={styles.textinput} />
+            <TextInput selectionColor={"#FFD081"} style={styles.textinput} />
             <Text style={{ color: 'black', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>Password*</Text>
-            <TextInput style={styles.textinput} />
+            <TextInput selectionColor={"#FFD081"} style={styles.textinput} />
 
             <View style={styles.checkboxContainer}>
               <Checkbox
-                value={true}
-                onValueChange={() => {}}
+                value={isSucsess}
+                onValueChange={() => {
+                  setIsSucsess((isSucsess === false? true:false))
+                }}
                 style={{marginVertical:2}}
                 color={'#FFD081'}
               />              

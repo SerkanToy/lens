@@ -21,8 +21,12 @@ export default function SignIn() {
             <TextInput style={styles.textinput} />
             <Text style={{ color: 'black', fontSize: 17, fontWeight:600, marginBottom:5 }}>Password*</Text>
             <TextInput style={styles.textinput} />
-            <Text style={{ width:'100%', textAlign:'right', color: 'black', fontSize: 17, fontWeight:500, marginBottom:5 }}>Forgot Password?</Text>
-            <Pressable onPress={() => { nav.navigate("SignIn") }}>
+
+            <Pressable onPress={() => { nav.navigate("ForgotPassword") }}>
+              <Text style={{ width:'100%', textAlign:'right', color: 'black', fontSize: 17, fontWeight:500, marginBottom:5 }}>Forgot Password?</Text>
+            </Pressable>
+            
+            <Pressable onPress={() => { nav.navigate("Index") }}>
               <View style={styles.button}>
                 <Text style={{ color: 'black', fontSize: 17 }}>Sign In</Text>
               </View>
