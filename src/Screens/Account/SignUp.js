@@ -31,12 +31,12 @@ export default function SignUp() {
               <Checkbox
                 value={isSucsess}
                 onValueChange={() => {
-                  setIsSucsess((isSucsess === false? true:false))
+                  setIsSucsess((isSucsess === false ? true : false))
                 }}
-                style={{marginVertical:2}}
+                style={{ marginVertical: 2 }}
                 color={'#FFD081'}
-              />              
-              <Text style={{color: 'black', fontSize: 17}}>{'\x20'}I agree to all Term, Privacy and Fees</Text>
+              />
+              <Text style={{ color: 'black', fontSize: 17 }}>{'\x20'}I agree to all Term, Privacy and Fees</Text>
             </View>
 
             <Pressable onPress={() => { nav.navigate("SignIn") }}>
@@ -48,9 +48,13 @@ export default function SignUp() {
 
 
 
-          <Text style={{ marginVertical: 10, width: '100%', color: 'black', fontSize: 17, textAlign: 'center' }}>
-            --------------------------- Or Continue With ---------------------------
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: 'black', height: 1 }}></View>
+            <Text style={{ marginHorizontal: 15, marginVertical: 15, flex: 1, color: 'black', fontSize: 15, textAlign: 'center' }}>
+              Or Continue With
+            </Text>
+            <View style={{ flex: 1, backgroundColor: 'black', height: 1 }}></View>
+          </View>
 
           <Pressable onPress={() => { nav.navigate("SignIn") }}>
             <View style={styles.buttonlogin}>
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 30,
-    paddingVertical:10
+    paddingVertical: 10
   },
   button: {
     padding: 20,

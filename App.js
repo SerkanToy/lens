@@ -1,5 +1,5 @@
-import React from 'react'
-import { TouchableOpacity, Button } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { TouchableOpacity, Button, View } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Home from './src/Screens/Home';
@@ -13,12 +13,14 @@ import SignIn from './src/Screens/Account/SignIn';
 import SignUp from './src/Screens/Account/SignUp';
 import ForgotPassword from './src/Screens/Account/ForgotPassword';
 import Welcome from './src/Screens/Welcome';
+import toggleDrawerButton from './src/ToggleDrawerButton'
 // Only import react-native-gesture-handler on native platforms
 import 'react-native-gesture-handler';
-import { createStaticNavigation, NavigationIndependentTree, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, createStaticNavigation, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 const HomeTabs = createBottomTabNavigator({
   screenOptions:{
@@ -84,8 +86,8 @@ const ProductTab = createBottomTabNavigator({
   screenOptions:{
     headerShown:true,
     tabBarShowLabel:false,
-    headerSearchBarOptions:true,
-    headerLeft: ({navigation = useNavigation()}) => (
+    headerSearchBarOptions:false,
+    headerLeft: ({navigation = useNavigation() }) => (
       <TouchableOpacity onPress={() => { navigation.navigate("Index") }}>
          <AntDesign name="home" size={24} color="blue" />
       </TouchableOpacity>
@@ -121,13 +123,53 @@ const ProductTab = createBottomTabNavigator({
   }, 
 });
 
-const MyDrawer = createDrawerNavigator({
-  screenOptions:{
-    headerTransparent:false, 
+
+
+const LeftDrawerScreen = createDrawerNavigator({
+  id: 'LeftDrawer',
+  screenOptions: {
+    drawerPosition: 'left',
+  },
+  screens: {
+    Home: HomeTabs,
+    ProductTab: ProductTab
+  },
+});
+
+const RightDrawerScreen = createDrawerNavigator({
+  id : 'RightDrawer',
+  screenOptions: {
     drawerPosition: 'right',
-    headerSearchBarOptions:{      
-      placeholder:'Ara...'
-    },    
+    
+    headerTransparent:false,
+    headerRight:({ navigation = useNavigation() }) => (<View style={{marginRight:10}}>
+      <AntDesign name="bells" size={30} color="black" onPress={() => navigation.getParent('RightDrawer').toggleDrawer()}/>
+    </View>),
+    
+    /*headerLeft:({ navigation = useNavigation() }) => (<View style={{marginLeft:10}}>
+        <AntDesign name="appstore-o" size={30} color="black" onPress={  navigation.getParent('LeftDrawer').openDrawer() } />
+      </View>),*/
+  },
+  screens: {
+    Home: HomeTabs,
+    ProductTab: ProductTab
+  },
+});
+
+
+const MyDrawer = createDrawerNavigator({
+  id : 'LeftDrawer',
+  screenOptions:{    
+    headerTransparent:false,  
+    drawerPosition: 'left',     
+    //headerRight:toggleDrawerButton,
+    headerLeft:({ navigation = useNavigation() }) => (<TouchableOpacity  style={{marginLeft:10}} onPress={() => navigation.getParent('LeftDrawer').toggleDrawer()}>
+        <AntDesign name="appstore-o" size={30} color="black"  />
+      </TouchableOpacity>),
+    /*headerSearchBarOptions:{      
+      placeholder:'Ara...',
+      headerLeft:() => <Octicons name="checklist" size={24} color="black" />,
+    },*/
     headerTitleStyle:{
       display:'none'
     },
@@ -136,15 +178,18 @@ const MyDrawer = createDrawerNavigator({
     },
     headerShadowVisible:false
   },
+  /*LeftDrawerScreen:()=> <LeftDrawerScreen/>,
+  RightDrawerScreen:RightDrawerScreen,*/
   screens: {
-    HomeTab: HomeTabs,
-    //ProductTab: ProductTab,    
+    RightDrawerScreen: RightDrawerScreen,
+    Home: HomeTabs,
+    ProductTab: ProductTab
   },
 });
 
 const RootStack = createNativeStackNavigator({  
   screenOptions:{
-    headerTransparent:true,
+    headerTransparent:true,    
     headerLeft: ({navigation = useNavigation()}) => (
       <TouchableOpacity onPress={() => { navigation.goBack() }} style={{backgroundColor:'rgba(0, 0, 0, 0.19)',padding:10,borderRadius:30}}>
          <AntDesign name="left" size={24} color="black" />
@@ -191,7 +236,7 @@ const RootStack = createNativeStackNavigator({
           options:{
             headerShown:false,
           }
-        } 
+        }
       },
     },   
     Product:{
@@ -209,6 +254,6 @@ const Navigation = createStaticNavigation(RootStack);
 
 
 export default function App() {
-  return <NavigationIndependentTree><Navigation /></NavigationIndependentTree>;
+  return <Navigation />;
 }
 

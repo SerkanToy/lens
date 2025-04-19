@@ -34,10 +34,14 @@ export default function SignIn() {
           </View>
           
           
-
-          <Text style={{marginVertical:15, width:'100%', color: 'black', fontSize: 17, textAlign:'center' }}>
-            --------------------------- Or Continue With ---------------------------
-          </Text>
+          <View style={{flexDirection:'row', alignItems:'center', flex:1 }}>
+            <View style={{ flex:1, backgroundColor: 'black', height:1 }}></View>
+            <Text style={{ marginHorizontal:15, marginVertical:15, flex:1, color: 'black', fontSize: 15, textAlign:'center' }}>
+              Or Continue With
+            </Text>
+            <View style={{ flex:1, backgroundColor: 'black', height:1 }}></View>
+          </View>
+          
 
           <Pressable onPress={() => { nav.navigate("SignIn") }}>
             <View style={styles.buttonlogin}>
