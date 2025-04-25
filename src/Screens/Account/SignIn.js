@@ -9,7 +9,7 @@ export default function SignIn() {
   const nav = useNavigation()
   return (
     <View style={[stylesCss.container]}>
-      <ImageBackground source={require('../../../assets/images/authentication/1.png')} resizeMode="cover" style={styles.image}>
+        <ImageBackground source={require('../../../assets/images/authentication/1.png')} resizeMode="cover" style={styles.image}>
         <View style={styles.substance}>
           <View style={styles.title}>
             <Text style={{ color: 'black', fontSize: 30, fontWeight:800, marginBottom:5 }}>Sign in to your account</Text>
